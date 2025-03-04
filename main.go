@@ -30,7 +30,7 @@ func main() {
 	fmt.Println("Advent of Code MAIN START\n-------------------------")
 
 	//Day.Day1()
-	Day.Day3()
+	Day.Day4()
 
 	fmt.Println("\n-------------------------\nAdvent of Code MAIN   END")
 }
