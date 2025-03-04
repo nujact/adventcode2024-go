@@ -9,6 +9,13 @@ import (
 	"strings"
 )
 
+// Day2 solves the Advent of Code 2024 Day 2 puzzle
+// The puzzle involves analyzing sequences of numbers to determine if they are "safe"
+// Part 1: A sequence is safe if it's either strictly increasing or decreasing AND
+//
+//	the difference between consecutive numbers is ≤ 3
+//
+// Part 2: Similar to part 1 but allows one number to be removed to make the sequence safe
 func Day2() {
 	fmt.Println("2024 Day2 start")
 
@@ -22,6 +29,7 @@ func Day2() {
 	}
 	defer file.Close()
 
+	// Read input file line by line
 	scanner := bufio.NewScanner(file)
 	for scanner.Scan() {
 		line := scanner.Text()
@@ -42,6 +50,7 @@ func Day2() {
 		// Uncomment to use part 1
 		// safeCount += processInputs2(row)
 
+		// For part 2, try both with and without removing a number
 		row2 := make([]int64, len(row))
 		copy(row2, row)
 		safe2 := processInputs2pt2(row, true)
@@ -57,24 +66,28 @@ func Day2() {
 	fmt.Println("2024 Day2 end")
 }
 
+// processInputs2 checks if a sequence of numbers is "safe" according to part 1 rules
+// A sequence is safe if:
+// 1. It's either strictly increasing or decreasing
+// 2. The difference between consecutive numbers is ≤ 3
+// Returns:
+//   - 1 if the sequence is safe
+//   - 0 if the sequence is not safe
 func processInputs2(rowList []int64) int {
 	isSafeRisingOrFalling := 0
 
-	// Validate that rowList is rising across the row
-	//risingValid := true
+	// First check if the sequence is strictly increasing
 	for i := 0; i < len(rowList)-1; i++ {
 		if rowList[i] < rowList[i+1] {
 			isSafeRisingOrFalling = 1
 		} else {
 			isSafeRisingOrFalling = 0
-			//risingValid = false
 			break
 		}
 	}
 
-	// Validate only if rising is false
+	// If not increasing, check if it's strictly decreasing
 	if isSafeRisingOrFalling == 0 {
-		// Validate that rowList is falling across the row
 		for i := 0; i < len(rowList)-1; i++ {
 			if rowList[i] > rowList[i+1] {
 				isSafeRisingOrFalling = 1
@@ -85,17 +98,15 @@ func processInputs2(rowList []int64) int {
 		}
 	}
 
-	// Validate that diff between each is less than or equal to 3
+	// Check if differences between consecutive numbers are ≤ 3
 	isSafeGradual := 0
 	if isSafeRisingOrFalling == 1 {
-		//gradualValid := true
 		for i := 0; i < len(rowList)-1; i++ {
 			diff := int64(math.Abs(float64(rowList[i+1] - rowList[i])))
 			if diff <= 3 {
 				isSafeGradual = 1
 			} else {
 				isSafeGradual = 0
-				//gradualValid = false
 				break
 			}
 		}
@@ -104,13 +115,20 @@ func processInputs2(rowList []int64) int {
 	return isSafeRisingOrFalling * isSafeGradual
 }
 
+// processInputs2pt2 checks if a sequence of numbers is "safe" according to part 2 rules
+// Similar to part 1 but allows one number to be removed to make the sequence safe
+// Parameters:
+//   - rowList: The sequence of numbers to check
+//   - allowForgive: Whether to allow removing one number to make the sequence safe
+//
+// Returns:
+//   - 1 if the sequence is safe (or can be made safe by removing one number)
+//   - 0 if the sequence is not safe
 func processInputs2pt2(rowList []int64, allowForgive bool) int {
-	//fmt.Println("rowList:", rowList)
-
 	forgiveRowNum := -1
 	isSafeRisingOrFalling := 0
 
-	// Validate that rowList is rising across the row
+	// Check if sequence is strictly increasing
 	for i := 0; i < len(rowList)-1; i++ {
 		if rowList[i] < rowList[i+1] {
 			isSafeRisingOrFalling = 1
@@ -126,9 +144,8 @@ func processInputs2pt2(rowList []int64, allowForgive bool) int {
 		}
 	}
 
-	// Validate only if rising is false
+	// If not increasing, check if it's strictly decreasing
 	if isSafeRisingOrFalling == 0 {
-		// Validate that rowList is falling across the row
 		for i := 0; i < len(rowList)-1; i++ {
 			if i == forgiveRowNum {
 				continue
@@ -148,7 +165,7 @@ func processInputs2pt2(rowList []int64, allowForgive bool) int {
 		}
 	}
 
-	// Validate that diff between each is less than or equal to 3
+	// Check if differences between consecutive numbers are ≤ 3
 	isSafeGradual := 0
 	if isSafeRisingOrFalling == 1 {
 		for i := 0; i < len(rowList)-1; i++ {
@@ -170,11 +187,12 @@ func processInputs2pt2(rowList []int64, allowForgive bool) int {
 		}
 	}
 
+	// Remove the forgiven number if one was found
 	if forgiveRowNum != -1 {
-		// Remove element at forgiveRowNum
 		rowList = append(rowList[:forgiveRowNum], rowList[forgiveRowNum+1:]...)
 	}
 
+	// Debug output for unsafe sequences
 	if isSafeRisingOrFalling*isSafeGradual == 0 {
 		fmt.Printf("rowList: %v isSafeRisingOrFalling: %d isSafeGradual: %d forgiveRowNum: %d final: %d\n",
 			rowList, isSafeRisingOrFalling, isSafeGradual, forgiveRowNum, isSafeRisingOrFalling*isSafeGradual)
@@ -183,6 +201,10 @@ func processInputs2pt2(rowList []int64, allowForgive bool) int {
 	return isSafeRisingOrFalling * isSafeGradual
 }
 
+// gatherInputs2 parses a line of input into a slice of integers
+// Parameters:
+//   - line: The input line to parse
+//   - inputArray: Pointer to the array where the parsed numbers will be stored
 func gatherInputs2(line string, inputArray *[][]int64) {
 	// Split the line by space
 	parts := strings.Fields(line)
