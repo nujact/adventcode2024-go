@@ -17,7 +17,10 @@
             "type": "go",
             "request": "launch",
             "mode": "auto",
-            "program": "cmd/main.go"
+            "program": "cmd/main.go",
+            "args": [
+                "-o bin/advent.exe"
+            ]
         }
     ]
 }
