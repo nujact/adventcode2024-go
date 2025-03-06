@@ -1,7 +1,7 @@
 package main
 
 import (
-	"adventcode2024-go/Day1/Day"
+	"adventcode2024/Day"
 	"fmt"
 )
 
@@ -28,7 +28,7 @@ func main() {
 	fmt.Println("Advent of Code MAIN START\n-------------------------")
 
 	// Day.Day1()
-	Day.Day10()
+	Day.Day11()
 
 	fmt.Println("\n-------------------------\nAdvent of Code MAIN   END")
 }
