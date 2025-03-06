@@ -44,7 +44,7 @@ func Day3() {
 func GetInput() (string, bool) {
 	// Read the entire input file into memory
 	var inputFileNameBegins = "test" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s3.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s3.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Printf("Error reading file: %v\n", err)
 		return "", true

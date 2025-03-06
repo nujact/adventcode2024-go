@@ -290,7 +290,7 @@ func day6part2(matrix *Matrix) {
 // . - empty cells
 func day6GetInput() (string, bool) {
 	var inputFileNameBegins = "input" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s6.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s6.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Println(err)
 		return "", true

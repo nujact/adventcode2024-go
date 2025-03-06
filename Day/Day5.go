@@ -270,7 +270,7 @@ func contains(slice []string, str string) bool {
 // Returns the input string and a boolean indicating if there was an error
 func day5GetInput() (string, bool) {
 	var inputFileNameBegins = "input" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s5.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s5.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Println(err)
 		return "", true

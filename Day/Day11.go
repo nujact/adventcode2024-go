@@ -27,7 +27,7 @@ func Day11() {
 	fmt.Println("2024 Day 11 start")
 
 	// Read input file
-	file, err := os.Open("./inputs/input11.txt")
+	file, err := os.Open("../inputs/input11.txt")
 	if err != nil {
 		fmt.Println("Error opening file:", err)
 		return

@@ -275,7 +275,7 @@ func Day9() {
 // to indicate success or failure of the input reading process.
 func day9GetInput() (string, bool) {
 	var inputFileNameBegins = "input" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s9.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s9.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Println(err)
 		return "", true

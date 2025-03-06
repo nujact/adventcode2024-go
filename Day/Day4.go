@@ -28,7 +28,7 @@ func Day4() {
 
 	// Open file and gather raw inputs
 	var inputFileNameBegins = "input" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s4.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s4.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Println(err)
 		return

@@ -170,7 +170,7 @@ func day7part2(inputMemory string) {
 // 3267: 81 40 27
 func day7GetInput() (string, bool) {
 	var inputFileNameBegins = "input" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s7.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s7.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Println(err)
 		return "", true

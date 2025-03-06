@@ -71,7 +71,7 @@ func GetInputs() ([]int, []int, bool) {
 
 	// Open file and gather raw inputs
 	var inputFileNameBegins = "input" // "input" or "test"
-	file, err := os.Open(fmt.Sprintf("inputs/%s1.txt", inputFileNameBegins))
+	file, err := os.Open(fmt.Sprintf("../inputs/%s1.txt", inputFileNameBegins))
 	if err != nil {
 		fmt.Println(err)
 		return nil, nil, true
